@@ -59,7 +59,7 @@ catalogo-libros-parcial2/
 
 Capturas de pantalla
 
-Vista del catálogo con libros de ejemplo**
+Vista del catálogo con libros de ejemplo
 
 ![Catálogo con registros](capturas/catalogo.png)
 
