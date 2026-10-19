@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi catálogo de libros</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="dist/app.js"></script>
+</head>
+<body>
+  <header class="encabezado">
+    <div class="contenedor">
+      <h1>Mi catálogo de libros</h1>
+      <p>Registra y organiza los libros de tu biblioteca.</p>
+    </div>
+  </header>
+
+  <main class="contenedor">
+    <nav class="pestanas" aria-label="Secciones">
+      <button type="button" class="activa" data-pestana="catalogo" aria-selected="true">Catálogo</button>
+      <button type="button" data-pestana="resumen" aria-selected="false">Resumen</button>
+    </nav>
+
+    <div id="mensaje" class="mensaje" role="status" aria-live="polite" hidden></div>
+
+    <section data-vista="catalogo">
+      <div class="formulario-listado">
+        <section class="panel panel-formulario">
+          <h2 id="titulo-form">Registrar libro</h2>
+          <form id="form-libro" novalidate>
+            <input type="hidden" name="id" value="">
+            <label for="titulo">Título</label>
+            <input id="titulo" name="titulo" type="text" maxlength="100" placeholder="Nombre del libro">
+
+            <label for="autor">Autor</label>
+            <input id="autor" name="autor" type="text" maxlength="80" placeholder="Nombre del autor">
+
+            <label for="anio">Año de publicación</label>
+            <input id="anio" name="anio" type="number" min="1" placeholder="Ejemplo: 2005">
+
+            <label for="categoria">Categoría</label>
+            <select id="categoria" name="categoria">
+              <option value="">Selecciona una categoría</option>
+              <option>Novela</option>
+              <option>Fantasía</option>
+              <option>Historia</option>
+              <option>Ciencia</option>
+              <option>Tecnología</option>
+              <option>Otros</option>
+            </select>
+
+            <label for="estado">Estado de lectura</label>
+            <select id="estado" name="estado">
+              <option value="">Selecciona un estado</option>
+              <option>Pendiente</option>
+              <option>Leyendo</option>
+              <option>Leído</option>
+            </select>
+
+            <label for="correo">Correo de contacto</label>
+            <input id="correo" name="correo" type="text" placeholder="correo@ejemplo.com">
+            <small>Correo de quien registró el libro.</small>
+
+            <div class="botones-formulario">
+              <button id="guardar" type="submit" class="principal">Guardar libro</button>
+              <button id="cancelar" type="button" class="secundario" hidden>Cancelar</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="panel panel-listado">
+          <div class="titulo-listado">
+            <h2>Libros registrados</h2>
+            <span id="contador">0 resultado(s)</span>
+          </div>
+          <div class="filtros">
+            <div>
+              <label for="busqueda">Buscar por título o autor</label>
+              <input id="busqueda" type="search" placeholder="Escribe para buscar...">
+            </div>
+            <div>
+              <label for="filtro-categoria">Categoría</label>
+              <select id="filtro-categoria">
+                <option value="">Todas las categorías</option>
+                <option>Novela</option>
+                <option>Fantasía</option>
+                <option>Historia</option>
+                <option>Ciencia</option>
+                <option>Tecnología</option>
+                <option>Otros</option>
+              </select>
+            </div>
+            <div>
+              <label for="filtro-estado">Estado</label>
+              <select id="filtro-estado">
+                <option value="">Todos los estados</option>
+                <option>Pendiente</option>
+                <option>Leyendo</option>
+                <option>Leído</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="tabla-desplazable">
+            <table>
+              <thead>
+                <tr>
+                  <th>Título</th>
+                  <th>Autor</th>
+                  <th>Año</th>
+                  <th>Categoría</th>
+                  <th>Estado</th>
+                  <th>Correo</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="tabla-libros"></tbody>
+            </table>
+          </div>
+          <p id="sin-resultados" class="sin-resultados">No hay libros que mostrar.</p>
+        </section>
+      </div>
+    </section>
+
+    <section data-vista="resumen" class="panel panel-resumen" hidden>
+      <h2>Resumen de la biblioteca</h2>
+      <div class="tarjetas">
+        <div class="tarjeta"><span>Total de libros</span><strong id="total-libros">0</strong></div>
+        <div class="tarjeta"><span>Pendientes</span><strong id="total-pendientes">0</strong></div>
+        <div class="tarjeta"><span>Leyendo</span><strong id="total-leyendo">0</strong></div>
+        <div class="tarjeta"><span>Leídos</span><strong id="total-leidos">0</strong></div>
+      </div>
+      <h3>Libros por categoría</h3>
+      <ul id="resumen-categorias"></ul>
+    </section>
+  </main>
+</body>
+</html>

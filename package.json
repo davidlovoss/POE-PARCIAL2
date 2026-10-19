@@ -1,0 +1,13 @@
+{
+  "name": "catalogo-libros-parcial2",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Gestor de libros con TypeScript y MVC",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}
